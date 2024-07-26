@@ -21,7 +21,7 @@ $SMALL_DEVICE: "SMALL_DEVICE";
     @media only screen and (max-width: 767px) {
       @content;
     }
-  } @else if $canvas == $WIDE_MOBILE {
+  } @else if $canvas == $SMALL_DEVICE {
     @media only screen and (max-width: 575px) {
       @content;
     }

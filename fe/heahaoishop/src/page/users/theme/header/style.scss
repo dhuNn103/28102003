@@ -76,7 +76,7 @@
 
     li {
       list-style: none;
-
+      position: relative;
       a {
         text-decoration: none;
         font-size: 14px;
@@ -90,8 +90,38 @@
       }
     }
 
+    li:hover .header_menu_dropdown {
+      opacity: 1;
+      visibility: visible;
+    }
+
     .active a {
       color: map.get($theme-colors, "main");
+    }
+
+    .header_menu_dropdown {
+      background: #222222;
+      display: block;
+      position: absolute;
+      width: 180px;
+      z-index: 9;
+      padding: 5px 0;
+      transition: all, 0.3s;
+      opacity: 0;
+      visibility: hidden;
+
+      li {
+        a {
+          text-transform: capitalize;
+          color: white;
+          font-weight: 400;
+          padding: 5px 15px;
+        }
+
+        :hover {
+          color: map.get($theme-colors, "main");
+        }
+      }
     }
   }
 }
@@ -125,11 +155,71 @@
         display: inline-block;
         text-align: center;
         line-height: 20px;
-        font-size: 15px;
+        font-size: 13px;
         font-weight: 500;
-        left: 16px;
-        top: -6px;
+        left: 20px;
+        top: -2px;
       }
+    }
+  }
+}
+
+.hero_categories {
+  position: relative;
+
+  .hero_categories_all {
+    background: map.get($theme-colors, "main");
+    padding: 15px 25px 15px 40px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 700;
+    color: #ffffff;
+
+    svg,
+    span {
+      font-size: 16px;
+      margin-right: 5px;
+    }
+
+    svg {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  ul {
+    border: 1px solid #ebebeb;
+    position: absolute;
+    width: 99%;
+    background: #ffffff;
+    opacity: 1;
+    transition: all, 0.2s;
+
+    li {
+      list-style: none;
+
+      a {
+        text-decoration: none;
+        background-color: transparent;
+        font-size: 16px;
+        color: map.get($theme-colors, "normal-text");
+        line-height: 39px;
+        display: block;
+        padding-left: 40px;
+      }
+
+      &:hover {
+        background: #f7ffff;
+
+        a {
+          color: map.get($theme-colors, "main");
+        }
+      }
+    }
+
+    &.hidden {
+      opacity: 0;
     }
   }
 }

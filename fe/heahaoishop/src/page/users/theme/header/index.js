@@ -9,13 +9,17 @@ import {
   FaRegUser,
   FaShoppingCart,
 } from "react-icons/fa";
+import { CiMenuBurger } from "react-icons/ci";
+
 import { Link } from "react-router-dom";
 import { MdAttachEmail } from "react-icons/md";
 import { formatter } from "utils/fomater";
 import { ROUTERS } from "utils/router";
 
 const Header = () => {
-  const [menus, setMenus] = useState([
+  const [isShowCategories, setShowCategories] = useState(true);
+
+  const [menus] = useState([
     {
       name: "Trang chủ",
       path: ROUTERS.USER.HOME,
@@ -127,6 +131,15 @@ const Header = () => {
                 {menus?.map((menu, menuKey) => (
                   <li key={menuKey} className={menuKey === 0 ? "active" : ""}>
                     <Link to={menu?.path}>{menu?.name}</Link>
+                    {menu.child && (
+                      <ul className="header_menu_dropdown">
+                        {menu.child.map((childItem, childKey) => (
+                          <li key={`${menuKey}-${childKey}`}>
+                            <Link to={childItem.path}>{childItem.name}</Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
 
@@ -157,6 +170,42 @@ const Header = () => {
               </ul>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="container">
+        <div className="row hero_categories_container">
+          <div className="col-lg-3 hero_categories">
+            <div
+              className="hero_categories_all"
+              onClick={() => setShowCategories(!isShowCategories)}
+            >
+              <CiMenuBurger />
+              Danh sách sản phẩm
+            </div>
+            {isShowCategories && (
+              <ul className={isShowCategories ? "" : "hidden"}>
+                <li>
+                  <Link to={""}>Thịt tươi</Link>
+                </li>
+                <li>
+                  <Link to={""}>Rau tươi</Link>
+                </li>
+                <li>
+                  <Link to={""}>Cá tươi</Link>
+                </li>
+                <li>
+                  <Link to={""}>Quả tươi</Link>
+                </li>
+                <li>
+                  <Link to={""}>Hải sản</Link>
+                </li>
+                <li>
+                  <Link to={""}>Trái cây</Link>
+                </li>
+              </ul>
+            )}
+          </div>
+          <div className="col-lg-9">Phải</div>
         </div>
       </div>
     </>
